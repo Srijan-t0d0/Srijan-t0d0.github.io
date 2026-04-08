@@ -1,0 +1,215 @@
+---
+const featured = [
+  {
+    title: "Vubo",
+    role: "Lead Full-Stack Engineer",
+    problem: "Creators wanted AI-generated videos but had to jump between tools for scripting, generating, rendering, and posting.",
+    solution: "Built the entire platform from first commit. Integrated 45+ AI models (Kling, Seedance, Gemini, Flux Pro), architected Remotion-based server-side video rendering on AWS Lambda, built social scheduling with OAuth across 4 platforms, and set up BullMQ async job queues for reliable render processing.",
+    impact: "Platform serves thousands of creators. Led a 12-person team for 18 months. Drove migration to Next.js 16, React 19, Turborepo monorepo, and Partial Pre-Rendering for faster page loads.",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Remotion", "AWS Lambda", "Drizzle ORM", "PostgreSQL", "Redis", "BullMQ", "PostHog", "Turborepo"],
+    github: null,
+    live: "https://vubo.ai",
+    highlight: "18 months · Lead Engineer · 12-person team · 45+ AI models",
+  },
+  {
+    title: "Social Claw",
+    role: "Sole Developer",
+    problem: "Small creators juggle 4+ social platforms manually. Posting, responding to DMs, and tracking engagement is a full-time job.",
+    solution: "Built the MVP in 2 days, then iterated to a full SaaS: multi-platform post composer with media uploads via Cloudflare R2, keyword-triggered DM automation engine with follow-gating and tracked links, interactive calendar/queue, and 4-tier subscription billing via Polar.",
+    impact: "Complete production SaaS with 80+ backend tests, CI/CD pipeline, and subscription billing. MVP in 2 days, full product in 9.",
+    tech: ["Next.js 16", "Convex", "TypeScript", "Better Auth", "Turborepo", "Polar", "Cloudflare R2", "TanStack Form", "Vitest"],
+    github: "https://github.com/Srijan-t0d0/social-claw",
+    live: "https://social-claw-web.vercel.app",
+    highlight: "MVP in 2 days · Full SaaS in 9 · 80+ tests · Solo",
+  },
+  {
+    title: "Internet Mindmap",
+    role: "Sole Developer",
+    problem: "We browse hundreds of pages but forget most of what we read. Bookmarks are flat lists with no connections or search.",
+    solution: "Chrome extension (Cmd+Shift+S) saves any page. Cloudflare Workflows pipeline extracts content, generates embeddings, and applies AI tags. Search semantically, visualize connections in a force-directed graph, or chat with your knowledge base using RAG with source citations.",
+    impact: "Full-stack AI product running entirely on Cloudflare's free tier. $0/month infrastructure cost.",
+    tech: ["Next.js 15", "Hono", "Cloudflare Workers", "D1", "Vectorize", "Workers AI", "Drizzle ORM", "Vercel AI SDK", "WXT", "React Query"],
+    github: "https://github.com/Srijan-t0d0/internet-mindmap",
+    live: "https://internet-mindmap.vercel.app",
+    highlight: "Full-stack monorepo · Chrome Extension · RAG + Embeddings",
+  },
+];
+
+const other = [
+  {
+    title: "Multi-Chain HD Wallet",
+    description: "Non-custodial crypto wallet supporting BTC, ETH, SOL. Implements BIP-39 mnemonics and BIP-44 derivation paths from scratch.",
+    tech: ["TypeScript", "React 19", "Web3"],
+    github: "https://github.com/Srijan-t0d0/multi-chain-hd-wallet",
+    live: "https://multi-chain-hd-wallet.vercel.app",
+  },
+  {
+    title: "Multiplayer Chess",
+    description: "Real-time multiplayer chess with WebSocket game rooms, move validation, and live board sync.",
+    tech: ["TypeScript", "WebSocket", "Node.js"],
+    github: "https://github.com/Srijan-t0d0/chess",
+    live: "https://chess.100xdevs.com/",
+  },
+  {
+    title: "Self Web Hosting",
+    description: "Serve websites directly from your machine. A lightweight Go server handling HTTP routing with minimal resource usage.",
+    tech: ["Go", "Networking", "HTTP"],
+    github: "https://github.com/Srijan-t0d0/self-web-hosting",
+    live: null,
+  },
+  {
+    title: "Claude Throttle",
+    description: "Check if you're in the time window when Claude's session limit is reduced.",
+    tech: ["JavaScript", "API", "Vercel"],
+    github: "https://github.com/Srijan-t0d0/claude-throttle",
+    live: "https://claude-throttle.vercel.app",
+  },
+];
+---
+
+<section id="projects" class="relative py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <span class="section-label">Projects</span>
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+      Featured work
+    </h2>
+    <p class="text-text-secondary mb-12 max-w-xl">
+      Everything here is in production with actual users. No tutorials, no clones.
+    </p>
+
+    <!-- Featured projects - full width cards -->
+    <div class="space-y-6 mb-16">
+      {featured.map((project, i) => (
+        <article class="card-glow group p-6 sm:p-8 rounded-2xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300">
+          <!-- Top row: icon, title, role, links -->
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                {i === 0 ? (
+                  <svg class="w-6 h-6 text-accent-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                ) : i === 1 ? (
+                  <svg class="w-6 h-6 text-accent-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                ) : (
+                  <svg class="w-6 h-6 text-accent-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                )}
+              </div>
+              <div>
+                <div class="flex items-center gap-3 flex-wrap">
+                  <h3 class="text-xl font-bold text-text-primary group-hover:text-accent-light transition-colors">
+                    {project.title}
+                  </h3>
+                  <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-accent/10 text-accent-light border border-accent/20">
+                    {project.role}
+                  </span>
+                </div>
+                <p class="text-xs font-mono text-text-muted mt-1">{project.highlight}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-accent-light bg-accent/10 border border-accent/20 hover:bg-accent/20 transition-all"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-green animate-pulse-dot"></span>
+                  Live
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 rounded-lg text-text-muted hover:text-accent-light hover:bg-accent/10 transition-all"
+                  title="View source"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Problem → Solution → Impact -->
+          <div class="space-y-2 mb-6 max-w-3xl">
+            <p class="text-sm text-text-secondary leading-relaxed">
+              <span class="text-accent-light font-medium">Problem:</span> {project.problem}
+            </p>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              <span class="text-text-primary font-medium">What I built:</span> {project.solution}
+            </p>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              <span class="text-green font-medium">Impact:</span> {project.impact}
+            </p>
+          </div>
+
+          <!-- Tech tags -->
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="tech-badge">{t}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Other projects -->
+    <h3 class="text-xl font-semibold mb-6 text-text-secondary">Other noteworthy projects</h3>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {other.map(project => (
+        <a
+          href={project.live || project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-glow group p-5 rounded-xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-text-muted group-hover:text-accent-light transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+              <h4 class="text-sm font-semibold text-text-primary group-hover:text-accent-light transition-colors">
+                {project.title}
+              </h4>
+            </div>
+            {project.live && (
+              <span class="w-1.5 h-1.5 rounded-full bg-green"></span>
+            )}
+          </div>
+          <p class="text-xs text-text-muted leading-relaxed line-clamp-2 mb-3">
+            {project.description}
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {project.tech.map(t => (
+              <span class="text-[10px] font-mono text-text-muted">{t}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View all on GitHub -->
+    <div class="mt-10 text-center">
+      <a
+        href="https://github.com/Srijan-t0d0?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-accent-light transition-colors group"
+      >
+        View all projects on GitHub
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

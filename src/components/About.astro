@@ -1,0 +1,84 @@
+---
+const stats = [
+  { value: "18 mo", label: "Leading Vubo Engineering" },
+  { value: "3", label: "SaaS Products Shipped" },
+  { value: "45+", label: "AI Models Integrated" },
+  { value: "2 days", label: "Idea → Working MVP" },
+];
+---
+
+<section id="about" class="relative py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <!-- Left column -->
+      <div>
+        <span class="section-label">About</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
+          I solve problems with software,<br/>
+          <span class="text-text-secondary">then ship it to real users</span>
+        </h2>
+        <div class="space-y-4 text-text-secondary leading-relaxed">
+          <p>
+            At <a href="https://vubo.ai" target="_blank" rel="noopener" class="text-accent-light hover:underline">Vubo</a>,
+            creators wanted AI-generated videos but had to jump between tools for scripting, generating,
+            rendering, and posting. I built the platform that replaced all of that. 45+ AI model integrations,
+            server-side rendering on AWS Lambda, social scheduling across 4 platforms, async job queues
+            handling thousands of renders. Started as the first engineer, grew the codebase over 18 months
+            with a team of 12.
+          </p>
+          <p>
+            I pick the architecture, set up CI/CD, write tests, handle infra, and push to prod.
+            <strong class="text-text-primary">Social Claw</strong> went from nothing to a full SaaS
+            (billing, DM automation, multi-platform scheduling, 80+ tests). MVP was up in 2 days.
+            <strong class="text-text-primary">Internet Mindmap</strong> runs a RAG-powered knowledge graph
+            with Chrome extension on Cloudflare's free tier.
+          </p>
+          <p>
+            Recently migrated Vubo to Next.js 16 with Partial Pre-Rendering and set up a Turborepo
+            monorepo while keeping up with new AI model integrations. I like moving fast.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right column - Stats & details -->
+      <div class="space-y-8">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-4">
+          {stats.map(stat => (
+            <div class="p-4 rounded-xl border border-border-subtle bg-bg-secondary/30">
+              <div class="text-2xl font-bold text-text-primary font-mono mb-1">{stat.value}</div>
+              <div class="text-xs text-text-muted">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- What I bring card -->
+        <div class="p-6 rounded-xl border border-border-subtle bg-bg-secondary/30">
+          <h3 class="text-sm font-mono text-text-muted mb-4 uppercase tracking-wider">What I Bring</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-text-muted">Core Stack</span>
+              <span class="text-text-secondary">TypeScript, React, Next.js</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-text-muted">Backend</span>
+              <span class="text-text-secondary">Node.js, Hono, Convex, Python</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-text-muted">Infra & DevOps</span>
+              <span class="text-text-secondary">AWS, Cloudflare, Vercel, Docker</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-text-muted">Superpower</span>
+              <span class="text-text-secondary">Idea → Production, Fast</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-text-muted">GitHub</span>
+              <a href="https://github.com/Srijan-t0d0" target="_blank" rel="noopener" class="text-accent-light hover:underline">@Srijan-t0d0</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

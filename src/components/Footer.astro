@@ -1,0 +1,19 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border-subtle py-8 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 text-sm text-text-muted">
+      <span class="font-mono">~/srijan</span>
+      <span>&middot;</span>
+      <span>&copy; {year}</span>
+    </div>
+    <div class="flex items-center gap-1 text-xs text-text-muted">
+      <span>Built with</span>
+      <a href="https://astro.build" target="_blank" rel="noopener" class="text-accent-light hover:underline">Astro</a>
+      <span>&amp;</span>
+      <a href="https://tailwindcss.com" target="_blank" rel="noopener" class="text-accent-light hover:underline">Tailwind</a>
+    </div>
+  </div>
+</footer>

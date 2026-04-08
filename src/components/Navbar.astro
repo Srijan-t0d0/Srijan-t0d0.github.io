@@ -1,0 +1,94 @@
+---
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="font-mono text-sm font-medium text-text-primary hover:text-accent-light transition-colors">
+      ~/srijan
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class="text-sm text-text-secondary hover:text-text-primary transition-colors relative group"
+        >
+          {link.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent-light transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+      <a
+        href="https://github.com/Srijan-t0d0"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-press text-sm text-bg-primary bg-text-primary px-4 py-1.5 rounded-full hover:bg-accent-light hover:text-white transition-all duration-200 font-medium"
+      >
+        GitHub
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden text-text-secondary hover:text-text-primary transition-colors" aria-label="Toggle menu">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-bg-secondary/95 backdrop-blur-xl border-b border-border-subtle">
+    <div class="px-6 py-4 flex flex-col gap-4">
+      {links.map(link => (
+        <a href={link.href} class="text-sm text-text-secondary hover:text-text-primary transition-colors mobile-link">
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="https://github.com/Srijan-t0d0"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-bg-primary bg-text-primary px-4 py-1.5 rounded-full hover:bg-accent-light hover:text-white transition-all duration-200 font-medium text-center"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 50) {
+      navbar?.classList.add('bg-bg-primary/80', 'backdrop-blur-xl', 'border-b', 'border-border-subtle');
+    } else {
+      navbar?.classList.remove('bg-bg-primary/80', 'backdrop-blur-xl', 'border-b', 'border-border-subtle');
+    }
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>

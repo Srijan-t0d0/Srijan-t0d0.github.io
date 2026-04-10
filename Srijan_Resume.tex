@@ -1,0 +1,193 @@
+%-------------------------
+% Resume in Latex
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{iftex}
+\usepackage[sfdefault,medium]{roboto}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure PDF text is machine readable when compiled with pdfTeX.
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Srijan} \\ \vspace{1pt}
+    \small +91 8434279769 $|$ \href{mailto:srijandev01@gmail.com}{\underline{srijandev01@gmail.com}} $|$
+    \href{https://portfolio.bysrijan.com}{\underline{portfolio.bysrijan.com}} $|$
+    \href{https://github.com/Srijan-t0d0}{\underline{github.com/Srijan-t0d0}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Technology Madras}{Chennai, India}
+      {Bachelor of Science in Data Science and Applications}{Aug. 2022 -- Expected Sep. 2026}
+    \resumeSubItem{\textbf{Certification:} CS50x, Harvard University's Introduction to Computer Science}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Tech Lead}{Oct. 2024 -- Present}
+      {Vubo, AI Video Generation Platform (\href{https://vubo.ai}{\underline{vubo.ai}})}{Remote}
+      \resumeItemListStart
+        \resumeItem{Lead a 7-person team building an AI video generation SaaS serving thousands of creators. Own all architecture, code review, and technical direction}
+        \resumeItem{Integrated 45+ AI models (Kling, Seedance, Gemini, Flux Pro) and built a Remotion video rendering pipeline on AWS Lambda with S3/CDN delivery}
+        \resumeItem{Chose and wired up the full stack: Next.js 16 App Router, PostgreSQL + Drizzle ORM, BullMQ job queues, Redis. Every technical decision goes through me}
+        \resumeItem{Built social scheduling with OAuth across 4 platforms (Meta, TikTok, YouTube) so creators can publish directly from the app}
+        \resumeItem{Created a type-safe RouteBuilder pattern reused across 70+ API routes, handling auth, workspace scoping, rate limiting, and tracing in one place}
+        \resumeItem{Migrated to Turborepo monorepo with shared packages and upgraded to React 19 + Partial Pre-Rendering}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Full-Stack Engineer}{Oct. 2024 -- Dec. 2024}
+      {MrXP, Home Services Marketplace (\href{https://mrxp.com}{\underline{mrxp.com}})}{Remote}
+      \resumeItemListStart
+        \resumeItem{Converted expert profiles, search results, and dashboard from client-side rendering to SSR, cutting redundant re-renders and making pages load noticeably faster}
+        \resumeItem{Moved categories/services fetching from per-render API calls to build-time static generation, reducing runtime API calls by \textasciitilde{}100x}
+        \resumeItem{Added SEO basics the app was missing: dynamic meta tags on expert and search pages, XML sitemap, and category landing pages for indexing}
+        \resumeItem{Added server-side pagination, DNS prefetching for key origins, search result caching, and optimized image/carousel loading}
+        \resumeItem{Migrated codebase to TypeScript, enforced kebab-case file naming, and restructured Navbar, search, and category components into proper Next.js patterns}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Social Claw} $|$ \emph{Next.js 16, Convex, Better Auth, Turborepo, Polar, Cloudflare R2} $|$ \href{https://social-claw-web.vercel.app}{\underline{Live}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Solo-built a social media management SaaS: idea to production in 9 days, working MVP in 2}
+            \resumeItem{Multi-platform post composer with Cloudflare R2 uploads, keyword-triggered DM automation with follow-gating, and interactive scheduling calendar}
+            \resumeItem{4-tier subscription billing via Polar. 80+ backend tests. Full CI/CD pipeline}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Internet Mindmap} $|$ \emph{Next.js 15, Cloudflare Workers/D1/Vectorize, Drizzle, AI SDK} $|$ \href{https://internet-mindmap.vercel.app}{\underline{Live}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Chrome extension that saves any page, extracts content, generates embeddings, and connects everything into a searchable mind map. Runs on Cloudflare free tier (\$0/month)}
+            \resumeItem{Cloudflare Workflows pipeline handles extraction, vectorization, and AI tagging. Includes RAG chat with source citations and a force-directed graph view}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Emotion Classifier} $|$ \emph{PyTorch, Transformers, BERT, DeBERTa, BiLSTM, Gradio} $|$ \href{https://huggingface.co/spaces/Srijant0d0/emotion-classifier}{\underline{Live}} $|$ \href{https://github.com/Srijan-t0d0/deep-learning-project}{\underline{GitHub}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Compared 4 NLP models (BERT, DeBERTa, BiLSTM-Attention, custom TextCNN) on multi-class emotion classification. Deployed the best as a Gradio app on HuggingFace Spaces}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Self-Hosting Infrastructure} $|$ \emph{Go, Docker, Nginx, Prometheus, Grafana} $|$ \href{https://github.com/Srijan-t0d0/self-web-hosting}{\underline{GitHub}}}{2024}
+          \resumeItemListStart
+            \resumeItem{Runs multiple side projects on a home server: Docker Compose for containers, Nginx as reverse proxy, a custom DDNS updater written in Go, and Prometheus + Grafana for monitoring}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: TypeScript, JavaScript, Python, Go, SQL, HTML/CSS, Bash, C} \\
+     \textbf{Frameworks}{: Next.js 16, React 19, Astro, Hono, Express.js, Flask, Tailwind CSS v4, tRPC, GraphQL} \\
+     \textbf{Backend \& Data}{: PostgreSQL, Drizzle ORM, Prisma, Convex, Redis, BullMQ, MongoDB, Socket.IO} \\
+     \textbf{AI/ML}{: PyTorch, Vercel AI SDK, LangChain, Cloudflare Workers AI, RAG, Embeddings, scikit-learn} \\
+     \textbf{Infrastructure}{: AWS (Lambda, S3, ECR), Cloudflare Workers, Docker, Kubernetes, Nginx, Turborepo, GitHub Actions, Linux} \\
+     \textbf{Observability \& Auth}{: Weights \& Biases, OpenTelemetry, PostHog, Prometheus, Grafana, Better Auth, Auth.js, OAuth}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

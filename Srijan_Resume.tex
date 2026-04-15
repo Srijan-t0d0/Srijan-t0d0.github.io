@@ -104,6 +104,14 @@
     \href{https://github.com/Srijan-t0d0}{\underline{github.com/Srijan-t0d0}}
 \end{center}
 
+%-----------SUMMARY-----------
+\section{Summary}
+\resumeItemListStart
+\resumeItem{Lead founding engineer at Vubo (18 months): owned all architecture, code review, and technical direction for an AI video platform integrating 45+ models (Kling, Seedance, Gemini, Flux Pro) and serving thousands of creators.}
+\resumeItem{Full-stack across TypeScript, Next.js, Go, Python, and SQL: from product features and API design to AWS Lambda rendering pipelines, BullMQ job queues, PostgreSQL, and Redis.}
+\resumeItem{Shipped 3 production SaaS products end-to-end; most recent (Social Claw) includes multi-platform post scheduling, keyword-triggered DM automation, 4-tier subscription billing via Polar, and 80+ backend tests in CI.}
+\resumeItem{Strong in system design and developer tooling: type-safe RouteBuilder abstraction across 70+ API routes, Turborepo monorepo migration, RAG-powered knowledge graph running on Cloudflare's free tier.}
+\resumeItemListEnd
 
 %-----------EDUCATION-----------
 \section{Education}
@@ -123,21 +131,22 @@
       {Lead Founding Engineer}{Oct. 2024 -- Present}
       {Vubo, AI Video Generation Platform (\href{https://vubo.ai}{\underline{vubo.ai}})}{Remote}
       \resumeItemListStart
-        \resumeItem{Lead a 7-person team building an AI video generation SaaS serving thousands of creators. Own all architecture, code review, and technical direction}
-        \resumeItem{Integrated 45+ AI models (Kling, Seedance, Gemini, Flux Pro) and built a Remotion video rendering pipeline on AWS Lambda with S3/CDN delivery}
-        \resumeItem{Chose and wired up the full stack: Next.js 16 App Router, PostgreSQL + Drizzle ORM, BullMQ job queues, Redis. Every technical decision goes through me}
-        \resumeItem{Built social scheduling with OAuth across 4 platforms (Meta, TikTok, YouTube) so creators can publish directly from the app}
-        \resumeItem{Created a type-safe RouteBuilder pattern reused across 70+ API routes, handling auth, workspace scoping, rate limiting, and tracing in one place}
-        \resumeItem{Migrated to Turborepo monorepo with shared packages and upgraded to React 19 + Partial Pre-Rendering}
+        \resumeItem{Led 7-person engineering team building an AI video generation SaaS serving thousands of creators; owned all architecture, code review, and technical direction end-to-end}
+        \resumeItem{Orchestrated async AI video pipeline using fal.ai, Replicate, and Remotion on AWS Lambda; integrated 45+ models (Kling, Seedance, Gemini, Flux Pro) with prompt engineering to ensure consistent generation quality across 1,000+ processed videos}
+        \resumeItem{Developed distributed background job system using Inngest and BullMQ for media processing, credit management, and workflow orchestration at scale}
+        \resumeItem{Shipped backend features in TypeScript and Golang: subscription logic, atomic credit deduction, rate limiting, referral system, and internal admin tooling; backed by PostgreSQL (RDS) and Redis (ElastiCache)}
+        \resumeItem{Built social scheduling with OAuth across 4 platforms (Meta, TikTok, YouTube), enabling creators to publish directly from the app and eliminating dependency on external scheduling tools}
+        \resumeItem{Engineered a type-safe RouteBuilder abstraction reused across 70+ API routes, centralising auth, workspace scoping, rate limiting, and tracing while eliminating per-route boilerplate across the entire API surface}
+        \resumeItem{Integrated OpenTelemetry tracing and PostHog analytics; optimized CI/CD with GitHub Actions caching and automated CloudFront invalidations; migrated to Turborepo monorepo with React 19 + Partial Pre-Rendering}
       \resumeItemListEnd
 
     \resumeSubheading
       {Full-Stack Engineer}{Oct. 2024 -- Dec. 2024}
       {MrXP, Home Services Marketplace (\href{https://mrxp.com}{\underline{mrxp.com}})}{Remote}
       \resumeItemListStart
-        \resumeItem{Converted expert profiles, search results, and dashboard from client-side rendering to SSR, cutting redundant re-renders and making pages load noticeably faster}
+        \resumeItem{Converted expert profiles, search results, and dashboard from CSR to SSR, eliminating redundant re-renders and measurably improving perceived load times on high-traffic pages}
         \resumeItem{Moved categories/services fetching from per-render API calls to build-time static generation, reducing runtime API calls by \textasciitilde{}100x}
-        \resumeItem{Added SEO basics the app was missing: dynamic meta tags on expert and search pages, XML sitemap, and category landing pages for indexing}
+        \resumeItem{Implemented missing SEO fundamentals: dynamic meta tags on expert and search pages, XML sitemap, and category landing pages for organic search indexing}
         \resumeItem{Added server-side pagination, DNS prefetching for key origins, search result caching, and optimized image/carousel loading}
         \resumeItem{Migrated codebase to TypeScript, enforced kebab-case file naming, and restructured Navbar, search, and category components into proper Next.js patterns}
       \resumeItemListEnd
@@ -151,9 +160,8 @@
       \resumeProjectHeading
           {\textbf{Social Claw} $|$ \emph{Next.js 16, Convex, Better Auth, Turborepo, Polar, Cloudflare R2} $|$ \href{https://social-claw-web.vercel.app}{\underline{Live}}}{2025}
           \resumeItemListStart
-            \resumeItem{Solo-built a social media management SaaS: idea to production in 9 days, working MVP in 2}
-            \resumeItem{Multi-platform post composer with Cloudflare R2 uploads, keyword-triggered DM automation with follow-gating, and interactive scheduling calendar}
-            \resumeItem{4-tier subscription billing via Polar. 80+ backend tests. Full CI/CD pipeline}
+            \resumeItem{Built a full production social media management SaaS solo: multi-platform post composer with Cloudflare R2 media uploads, keyword-triggered DM automation engine with follow-gating and tracked links, and interactive scheduling calendar}
+            \resumeItem{Integrated 4-tier subscription billing via Polar; shipped with 80+ backend tests (Vitest) and a full CI/CD pipeline for production-grade quality from day one}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Internet Mindmap} $|$ \emph{Next.js 15, Cloudflare Workers/D1/Vectorize, Drizzle, AI SDK} $|$ \href{https://internet-mindmap.vercel.app}{\underline{Live}}}{2025}
@@ -180,11 +188,11 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: TypeScript, JavaScript, Python, Go, SQL, HTML/CSS, Bash, C} \\
-     \textbf{Frameworks}{: Next.js 16, React 19, Astro, Hono, Express.js, Flask, Tailwind CSS v4, tRPC, GraphQL} \\
-     \textbf{Backend \& Data}{: PostgreSQL, Drizzle ORM, Prisma, Convex, Redis, BullMQ, MongoDB, Socket.IO} \\
-     \textbf{AI/ML}{: PyTorch, Vercel AI SDK, LangChain, Cloudflare Workers AI, RAG, Embeddings, scikit-learn} \\
-     \textbf{Infrastructure}{: AWS (Lambda, S3, ECR), Cloudflare Workers, Docker, Kubernetes, Nginx, Turborepo, GitHub Actions, Linux} \\
-     \textbf{Observability \& Auth}{: Weights \& Biases, OpenTelemetry, PostHog, Prometheus, Grafana, Better Auth, Auth.js, OAuth}
+     \textbf{Frameworks}{: Next.js 16, React 19, Astro, Hono, Express.js, Flask, Tailwind CSS v4, tRPC, GraphQL, Remotion} \\
+     \textbf{Backend \& Data}{: PostgreSQL, Drizzle ORM, Prisma, Convex, Redis, BullMQ, Inngest, MongoDB, Socket.IO, Cloudflare D1, KV Storage} \\
+     \textbf{AI/ML}{: PyTorch, Vercel AI SDK, LangChain, Cloudflare Workers AI, RAG, Embeddings, scikit-learn, OpenAI, Gemini, Mistral, OpenRouter, fal.ai, Replicate, Prompt Engineering, Browser Extension APIs} \\
+     \textbf{Infrastructure}{: AWS (EC2, ECS, EKS, Lambda, S3, ECR, RDS, CloudFront, IAM, VPC, ElastiCache, ALB, WAF, CloudWatch), Cloudflare Workers, Terraform, Docker, Kubernetes, Nginx, Caddy, Turborepo, GitHub Actions, Linux} \\
+     \textbf{Observability \& Auth}{: OpenTelemetry, Prometheus, Grafana, CloudWatch, PostHog, Weights \& Biases, Better Auth, Auth.js, OAuth}
     }}
  \end{itemize}
 

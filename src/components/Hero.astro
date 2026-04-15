@@ -5,9 +5,11 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
 ---
 
 <section class="relative min-h-[100dvh] flex items-center px-6 overflow-hidden">
-  <!-- Background gradient orbs — offset for asymmetry -->
-  <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent/8 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-1/4 -right-[10%] w-[400px] h-[400px] bg-accent-light/4 rounded-full blur-[100px]"></div>
+  <!-- WebGL mesh gradient canvas -->
+  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true" style="z-index:0;"></canvas>
+  <!-- CSS fallback orbs — hidden by default, shown when WebGL is unavailable or on mobile -->
+  <div id="orb-1" class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent/8 rounded-full blur-[120px] pointer-events-none opacity-0 transition-opacity duration-700" style="will-change:transform;"></div>
+  <div id="orb-2" class="absolute bottom-1/4 -right-[10%] w-[400px] h-[400px] bg-accent-light/4 rounded-full blur-[100px] pointer-events-none opacity-0 transition-opacity duration-700" style="will-change:transform;"></div>
 
   <div class="max-w-6xl mx-auto w-full relative z-10">
     <!-- Name — left-aligned, accent color instead of gradient text -->
@@ -18,36 +20,39 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
 
     <!-- Subtitle -->
     <p class="animate-fade-up delay-200 text-lg sm:text-xl md:text-2xl text-text-secondary font-light max-w-2xl mb-4">
-      Full-stack engineer building AI products
+      Lead engineer at Vubo for 18 months. Built the AI video platform from zero, led a 7-person team, shipped to thousands of creators.
     </p>
 
     <!-- Description -->
     <p class="animate-fade-up delay-300 text-sm sm:text-base text-text-muted max-w-lg mb-8 leading-relaxed">
-      Lead engineer at Vubo, where I built an AI video platform now serving thousands of creators.
-      18 months, 3 SaaS products shipped, everything from frontend to infra.
+      3 SaaS products in production. 45+ AI models integrated. Architecture, infra, and the UI creators open every day.
     </p>
 
-    <!-- Proof strip -->
-    <div class="animate-fade-up delay-350 flex flex-wrap items-center gap-x-6 gap-y-2 mb-10 text-xs font-mono text-text-muted">
-      <span class="flex items-center gap-1.5">
-        <span class="w-1 h-1 rounded-full bg-accent-light"></span>
-        3 shipped SaaS products
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="w-1 h-1 rounded-full bg-accent-light"></span>
-        45+ AI models integrated
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="w-1 h-1 rounded-full bg-accent-light"></span>
-        TypeScript &middot; React &middot; Next.js &middot; AWS
-      </span>
+    <!-- Stat badges -->
+    <div class="animate-fade-up delay-350 flex flex-wrap gap-3 mb-10">
+      <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">7</span>
+        <span class="text-xs text-text-muted">Engineers led</span>
+      </div>
+      <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">3</span>
+        <span class="text-xs text-text-muted">Products shipped</span>
+      </div>
+      <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">45+</span>
+        <span class="text-xs text-text-muted">AI models integrated</span>
+      </div>
+      <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">18mo</span>
+        <span class="text-xs text-text-muted">At Vubo</span>
+      </div>
     </div>
 
-    <!-- CTA buttons — left-aligned -->
-    <div class="animate-fade-up delay-500 flex flex-col sm:flex-row items-start gap-4">
+    <!-- CTA buttons -->
+    <div class="animate-fade-up delay-500 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
       <a
         href="#projects"
-        class="btn-press group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-accent/20"
+        class="btn-press group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-bg-primary rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-accent/20"
       >
         View my work
         <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,26 +65,251 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
       >
         Get in touch
       </a>
-      <a
-        href={resumeHref}
-        download
-        class="btn-press inline-flex items-center gap-2 px-6 py-3 border border-border-subtle hover:border-accent/40 text-text-secondary hover:text-text-primary rounded-full text-sm font-medium transition-all duration-200"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v10m0 0 4-4m-4 4-4-4M5 17.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5" />
-        </svg>
-        Download resume
-      </a>
-      <a
-        href={emailHref}
-        class="btn-press inline-flex items-center gap-2 px-6 py-3 border border-border-subtle hover:border-accent/40 text-text-secondary hover:text-text-primary rounded-full text-sm font-medium transition-all duration-200"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21.75 6.75v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m18 0A2.25 2.25 0 0 0 19.5 4.5h-15A2.25 2.25 0 0 0 2.25 6.75m18 0-9 6-9-6" />
-        </svg>
-        Mail me
-      </a>
     </div>
 
   </div>
 </section>
+
+<script>
+// ── Vertex shader ────────────────────────────────────────────────────────────
+const VS = `
+  attribute vec2 a_pos;
+  void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+`;
+
+// ── Fragment shader — domain-warped FBM mesh gradient ────────────────────────
+const FS = `
+  precision mediump float;
+  uniform float u_time;
+  uniform vec2  u_res;
+  uniform vec2  u_mouse;
+  uniform vec2  u_click;   // click position in UV space
+  uniform float u_ctime;   // seconds since last click
+
+  vec2 hash2(vec2 p) {
+    p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+  }
+
+  float gnoise(vec2 p) {
+    vec2 i = floor(p), f = fract(p);
+    vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    return mix(
+      mix(dot(hash2(i + vec2(0,0)), f - vec2(0,0)),
+          dot(hash2(i + vec2(1,0)), f - vec2(1,0)), u.x),
+      mix(dot(hash2(i + vec2(0,1)), f - vec2(0,1)),
+          dot(hash2(i + vec2(1,1)), f - vec2(1,1)), u.x),
+      u.y
+    );
+  }
+
+  float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    // Rotation matrix — breaks axis-aligned artefacts
+    mat2 rot = mat2(0.8775, -0.4794, 0.4794, 0.8775);
+    for (int i = 0; i < 4; i++) {
+      v += a * gnoise(p);
+      p = rot * p * 2.03;
+      a *= 0.485;
+    }
+    return v;
+  }
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / u_res;
+    uv.y = 1.0 - uv.y;
+    float t = u_time * 0.05;
+
+    // Correct UV aspect ratio for distance calculations
+    float aspect = u_res.x / u_res.y;
+    vec2 uvA = vec2(uv.x * aspect, uv.y);
+
+    // Mouse nudges the second warp layer — stronger pull
+    vec2 moff = (u_mouse - uv) * 0.13;
+
+    // Layer 1 warp
+    vec2 q = vec2(
+      fbm(uv * 2.0 + vec2(0.0,  t)),
+      fbm(uv * 2.0 + vec2(5.2,  t * 0.78))
+    );
+
+    // Layer 2 warp + mouse influence
+    vec2 r = vec2(
+      fbm(uv * 2.0 + 3.5 * q + vec2(1.7, 9.2) + 0.10 * t + moff),
+      fbm(uv * 2.0 + 3.5 * q + vec2(8.3, 2.8) + 0.075 * t + moff)
+    );
+
+    float f = fbm(uv * 1.5 + r) * 0.5 + 0.5; // remap to [0,1]
+
+    // Colour palette
+    vec3 base   = vec3(0.0353, 0.0353, 0.0431); // #09090b — dark zinc
+    vec3 mid    = vec3(0.038,  0.110,  0.078);   // deep emerald shadow
+    vec3 accent = vec3(0.086,  0.788,  0.541);   // #16c98a
+
+    vec3 col = base;
+    col = mix(col, mid,    smoothstep(0.42, 0.62, f) * 0.80);
+    col = mix(col, accent, smoothstep(0.65, 0.83, f) * 0.14);
+
+    // ── Cursor glow — soft radial bloom following the mouse ──────────────────
+    vec2 mouseA = vec2(u_mouse.x * aspect, u_mouse.y);
+    float mDist = length(uvA - mouseA);
+    float cursorGlow = exp(-mDist * mDist * 9.0) * 0.18;
+    col += accent * cursorGlow;
+
+    // ── Click ripple — expanding shockwave ring ───────────────────────────────
+    if (u_ctime < 2.5) {
+      vec2 clickA = vec2(u_click.x * aspect, u_click.y);
+      float cDist  = length(uvA - clickA);
+      float radius = u_ctime * 0.55;           // ring travels outward
+      float ring   = exp(-pow(cDist - radius, 2.0) * 280.0);
+      float fade   = exp(-u_ctime * 2.2);      // envelope decays over time
+      col += accent * ring * fade * 0.55;
+    }
+
+    // Radial vignette — blend edges back to base so it sits flush with the page
+    vec2 vig = uv * 2.0 - 1.0;
+    float v  = 1.0 - dot(vig * vec2(0.42, 0.70), vig * vec2(0.42, 0.70));
+    col = mix(base, col, clamp(v * 1.5, 0.0, 1.0));
+
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+const orb1   = document.getElementById('orb-1') as HTMLElement;
+const orb2   = document.getElementById('orb-2') as HTMLElement;
+
+const isMobile    = 'ontouchstart' in window || navigator.maxTouchPoints > 1;
+const wantsLess   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Fallback path — CSS orbs + mouse parallax ────────────────────────────────
+function showFallback() {
+  if (canvas) canvas.style.display = 'none';
+  orb1.style.opacity = '1';
+  orb2.style.opacity = '1';
+
+  if (!wantsLess) {
+    let raf: number;
+    window.addEventListener('mousemove', (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx;
+        const dy = (e.clientY - cy) / cy;
+        orb1.style.transform = `translate(${dx * 18}px, ${dy * 12}px)`;
+        orb2.style.transform = `translate(${-dx * 12}px, ${-dy * 8}px)`;
+      });
+    }, { passive: true });
+  }
+}
+
+if (isMobile || wantsLess) {
+  showFallback();
+} else {
+  // ── WebGL path ─────────────────────────────────────────────────────────────
+  const gl = canvas.getContext('webgl', {
+    alpha: false, antialias: false,
+    powerPreference: 'low-power', depth: false,
+  }) as WebGLRenderingContext | null;
+
+  if (!gl) {
+    showFallback();
+  } else {
+    function compile(type: number, src: string): WebGLShader {
+      const s = gl!.createShader(type)!;
+      gl!.shaderSource(s, src);
+      gl!.compileShader(s);
+      return s;
+    }
+
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER,   VS));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn('Shader link failed:', gl.getProgramInfoLog(prog));
+      showFallback();
+    } else {
+      gl.useProgram(prog);
+
+      // Full-screen quad (two triangles)
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER,
+        new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]),
+        gl.STATIC_DRAW
+      );
+      const posLoc = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(posLoc);
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime   = gl.getUniformLocation(prog, 'u_time');
+      const uRes    = gl.getUniformLocation(prog, 'u_res');
+      const uMouse  = gl.getUniformLocation(prog, 'u_mouse');
+      const uClick  = gl.getUniformLocation(prog, 'u_click');
+      const uCtime  = gl.getUniformLocation(prog, 'u_ctime');
+
+      // Smooth mouse — lerp toward target each frame
+      let mx = 0.5, my = 0.5;
+      let tx = 0.5, ty = 0.5;
+
+      // Click state
+      let clickX = 0.5, clickY = 0.5;
+      let clickStart = -999; // sentinel — no click yet
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        tx = (e.clientX - rect.left)  / rect.width;
+        ty = (e.clientY - rect.top)   / rect.height;
+      }, { passive: true });
+
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        clickX = (e.clientX - rect.left) / rect.width;
+        clickY = (e.clientY - rect.top)  / rect.height;
+        clickStart = performance.now();
+      });
+
+      // Render at 50% resolution — CSS scales it up smoothly (it's a gradient, blur is fine)
+      function resize() {
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        canvas.width  = Math.round(w * 0.5);
+        canvas.height = Math.round(h * 0.5);
+        gl!.viewport(0, 0, canvas.width, canvas.height);
+      }
+      new ResizeObserver(resize).observe(canvas);
+      resize();
+
+      const t0 = performance.now();
+      let raf: number;
+
+      function render() {
+        raf = requestAnimationFrame(render);
+        // Smooth mouse lerp
+        mx += (tx - mx) * 0.04;
+        my += (ty - my) * 0.04;
+        const now = performance.now();
+        const elapsed = (now - t0) / 1000;
+        const ctime = clickStart < 0 ? 999 : (now - clickStart) / 1000;
+        gl!.uniform1f(uTime,  elapsed);
+        gl!.uniform2f(uRes,   canvas.width, canvas.height);
+        gl!.uniform2f(uMouse, mx, my);
+        gl!.uniform2f(uClick, clickX, clickY);
+        gl!.uniform1f(uCtime, ctime);
+        gl!.drawArrays(gl!.TRIANGLES, 0, 6);
+      }
+
+      render();
+
+      // Pause when tab is hidden — saves battery
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else render();
+      });
+    }
+  }
+}
+</script>

@@ -7,11 +7,12 @@
   --color-bg-card-hover: #222226;
   --color-border-subtle: #333338;
   --color-border-accent: #52525b;
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #c4c4cc;
-  --color-text-muted: #8a8a96;
+  --color-text-primary: #f4f4f5;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
   --color-accent: #16c98a;
   --color-accent-light: #4ee0ad;
+  --color-accent-dark: #0ea46e;
   --color-accent-glow: rgba(22, 201, 138, 0.14);
   --color-green: #34d058;
   --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
@@ -125,10 +126,79 @@ body {
 .delay-700 { animation-delay: 0.7s; }
 .delay-800 { animation-delay: 0.8s; }
 
+/* Mobile menu slide-down */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-down {
+  animation: slide-down 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Ripple click effect */
+@keyframes ripple-out {
+  from { transform: scale(0); opacity: 0.35; }
+  to   { transform: scale(3);  opacity: 0; }
+}
+.ripple-origin {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-origin .ripple-ring {
+  position: absolute;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  background: rgba(255, 255, 255, 0.18);
+  animation: ripple-out 0.55s linear forwards;
+  pointer-events: none;
+}
+
+/* Stagger reveal for badges */
+@keyframes badge-pop {
+  from { opacity: 0; transform: scale(0.88) translateY(4px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+.badge-animate {
+  animation: badge-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Spotlight card — cursor-tracked radial glow */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(22, 201, 138, 0.07),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+.spotlight-card:hover::before { opacity: 1; }
+.spotlight-card > * { position: relative; z-index: 1; }
+
 /* Card hover — tinted accent shadow */
 .card-glow {
   position: relative;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
 .card-glow:hover {
   border-color: var(--color-accent) !important;

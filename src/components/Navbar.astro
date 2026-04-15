@@ -1,6 +1,5 @@
 ---
 const links = [
-  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -44,17 +43,24 @@ const links = [
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="md:hidden hidden bg-bg-secondary/95 backdrop-blur-xl border-b border-border-subtle">
-    <div class="px-6 py-4 flex flex-col gap-4">
+    <div class="px-6 py-4 flex flex-col gap-1">
       {links.map(link => (
-        <a href={link.href} class="text-sm text-text-secondary hover:text-text-primary transition-colors mobile-link">
+        <a
+          href={link.href}
+          data-section={link.href.replace('#', '')}
+          class="mobile-link text-sm text-text-secondary hover:text-text-primary transition-colors py-2.5 border-b border-border-subtle/50 last:border-0 flex items-center justify-between group"
+        >
           {link.label}
+          <svg class="w-3.5 h-3.5 text-text-muted group-hover:text-accent-light group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
         </a>
       ))}
       <a
         href="https://github.com/Srijan-t0d0"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm text-bg-primary bg-text-primary px-4 py-1.5 rounded-full hover:bg-accent-light hover:text-white transition-all duration-200 font-medium text-center"
+        class="mt-2 text-sm text-bg-primary bg-text-primary px-4 py-2 rounded-full hover:bg-accent-light hover:text-white transition-all duration-200 font-medium text-center"
       >
         GitHub
       </a>
@@ -63,32 +69,76 @@ const links = [
 </nav>
 
 <script>
-  // Navbar scroll effect
   const navbar = document.getElementById('navbar');
-  let lastScroll = 0;
 
+  // Navbar scroll glass effect
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    if (currentScroll > 50) {
+    if (window.scrollY > 50) {
       navbar?.classList.add('bg-bg-primary/80', 'backdrop-blur-xl', 'border-b', 'border-border-subtle');
     } else {
       navbar?.classList.remove('bg-bg-primary/80', 'backdrop-blur-xl', 'border-b', 'border-border-subtle');
     }
-    lastScroll = currentScroll;
-  });
+  }, { passive: true });
 
-  // Mobile menu toggle
+  // Mobile menu toggle with animation
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
 
   menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+      mobileMenu?.classList.remove('hidden');
+      mobileMenu?.classList.add('animate-slide-down');
+    } else {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('animate-slide-down');
+    }
+    // Animate hamburger → X
+    const icon = document.getElementById('menu-icon');
+    if (icon) {
+      icon.setAttribute('d', menuOpen
+        ? 'M6 18L18 6M6 6l12 12'
+        : 'M4 6h16M4 12h16M4 18h16'
+      );
+    }
   });
 
-  // Close mobile menu on link click
+  // Close on link click
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
+      menuOpen = false;
       mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('animate-slide-down');
+      const icon = document.getElementById('menu-icon');
+      if (icon) icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
     });
   });
+
+  // Active nav link — highlight current section
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('text-text-primary', isActive);
+            link.classList.toggle('text-text-secondary', !isActive);
+            // Underline span for desktop links
+            const underline = link.querySelector('span');
+            if (underline) {
+              underline.classList.toggle('w-full', isActive);
+              underline.classList.toggle('w-0', !isActive);
+            }
+          });
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  sections.forEach((s) => sectionObserver.observe(s));
 </script>

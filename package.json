@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "resume": "tectonic Srijan_Resume.tex && mv Srijan_Resume.pdf public/Srijan_Resume.pdf"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

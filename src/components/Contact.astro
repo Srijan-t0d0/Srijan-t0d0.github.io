@@ -8,11 +8,36 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
   <div class="max-w-2xl mx-auto text-center">
     <span class="section-label justify-center">Contact</span>
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-      Get in touch
+      Let's build something fast
     </h2>
-    <p class="text-text-secondary mb-10 leading-relaxed">
-      Have a project in mind or want to work together? Drop me a message.
+
+    <!-- Availability block -->
+    <div class="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-6 px-5 py-3.5 rounded-2xl border border-border-subtle bg-bg-secondary/40 mb-8 text-sm">
+      <span class="flex items-center gap-2 font-medium text-text-primary">
+        <span class="w-2 h-2 rounded-full bg-green animate-pulse-dot"></span>
+        Open to work
+      </span>
+      <span class="hidden sm:block w-px h-4 bg-border-subtle"></span>
+      <span class="text-text-muted">Senior / Lead Full-Stack roles</span>
+      <span class="hidden sm:block w-px h-4 bg-border-subtle"></span>
+      <span class="text-text-muted">Remote or hybrid</span>
+    </div>
+
+    <p class="text-text-secondary mb-6 leading-relaxed">
+      Reply within 24 hours. Drop a message below, email directly, or book a call.
     </p>
+
+    <a
+      href="https://cal.com/srijan-dev"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-press inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-bg-primary rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-accent/20 mb-10"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      Schedule a call
+    </a>
 
     <form id="contact-form" class="text-left space-y-5 max-w-md mx-auto">
       <div>
@@ -129,7 +154,7 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
       const data = await res.json();
 
       if (res.ok) {
-        status!.textContent = "Message sent — I'll get back to you soon.";
+        status!.textContent = "Message sent. I'll get back to you soon.";
         status!.className = "text-center text-sm text-accent";
         form.reset();
       } else {
@@ -137,7 +162,7 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
         status!.className = "text-center text-sm text-red-400";
       }
     } catch {
-      status!.textContent = "Network error — try again.";
+      status!.textContent = "Network error. Try again.";
       status!.className = "text-center text-sm text-red-400";
     } finally {
       btn.disabled = false;

@@ -5,24 +5,24 @@ const featured = [
     role: "Lead Full-Stack Engineer",
     problem: "Creators wanted AI-generated videos but had to jump between tools for scripting, generating, and rendering.",
     solution: "Built the entire platform from first commit. Integrated 45+ AI models (Kling, Seedance, Gemini, Flux Pro), architected Remotion-based server-side video rendering on AWS Lambda, and set up BullMQ async job queues for reliable render processing.",
-    impact: "Platform serves thousands of creators. Led a 12-person team for 18 months. Drove migration to Next.js 16, React 19, Turborepo monorepo, and Partial Pre-Rendering for faster page loads.",
-    tech: ["Next.js 16", "React 19", "TypeScript", "Remotion", "AWS Lambda", "Drizzle ORM", "PostgreSQL", "Redis", "BullMQ", "PostHog", "Turborepo"],
+    impact: "Thousands of creators on the platform. Led a 7-person engineering team for 18 months. Drove migration to Next.js 16 with Partial Pre-Rendering and Turborepo while shipping new model integrations in parallel.",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Remotion", "fal.ai", "Replicate", "Inngest", "BullMQ", "AWS Lambda", "Drizzle ORM", "PostgreSQL", "Redis", "PostHog", "Turborepo"],
     github: null,
     live: "https://vubo.ai",
     favicon: "https://vubo.ai/favicon.ico",
-    highlight: "18 months · Lead Engineer · 12-person team · 45+ AI models",
+    highlight: "18 months · Lead Engineer · 7-person team · 45+ AI models",
   },
   {
     title: "Social Claw",
     role: "Sole Developer",
     problem: "Small creators juggle 4+ social platforms manually. Posting, responding to DMs, and tracking engagement is a full-time job.",
-    solution: "Built the MVP in 2 days, then iterated to a full SaaS: multi-platform post composer with media uploads via Cloudflare R2, keyword-triggered DM automation engine with follow-gating and tracked links, interactive calendar/queue, and 4-tier subscription billing via Polar.",
-    impact: "Complete production SaaS with 80+ backend tests, CI/CD pipeline, and subscription billing. MVP in 2 days, full product in 9.",
+    solution: "Built a full production SaaS solo: multi-platform post composer with media uploads via Cloudflare R2, keyword-triggered DM automation engine with follow-gating and tracked links, interactive calendar/queue, and 4-tier subscription billing via Polar.",
+    impact: "Production SaaS with multi-platform scheduling, keyword-triggered DM automation, 4-tier subscription billing, 80+ backend tests, and a full CI/CD pipeline.",
     tech: ["Next.js 16", "Convex", "TypeScript", "Better Auth", "Turborepo", "Polar", "Cloudflare R2", "TanStack Form", "Vitest"],
     github: null,
     live: "https://social-claw-web.vercel.app",
     favicon: "https://social-claw-web.vercel.app/icon.svg?icon.0ii4q_.a5mwds.svg",
-    highlight: "MVP in 2 days · Full SaaS in 9 · 80+ tests · Solo",
+    highlight: "Multi-platform scheduling · DM automation · 80+ tests · Solo",
   },
   {
     title: "Internet Mindmap",
@@ -83,14 +83,11 @@ const other = [
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
       Featured work
     </h2>
-    <p class="text-text-secondary mb-12 max-w-xl">
-      Everything here is in production with actual users. No tutorials, no clones.
-    </p>
 
     <!-- Featured projects - full width cards -->
     <div class="space-y-6 mb-16">
       {featured.map((project, i) => (
-        <article class="card-glow group p-6 sm:p-8 rounded-2xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300">
+        <article class="card-glow spotlight-card group p-6 sm:p-8 rounded-2xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300">
           <!-- Top row: icon, title, role, links -->
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
             <div class="flex items-start gap-4">
@@ -174,7 +171,7 @@ const other = [
           href={project.live || project.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="card-glow group p-5 rounded-xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300"
+          class="card-glow spotlight-card group p-5 rounded-xl border border-border-subtle bg-bg-secondary/30 hover:bg-bg-card-hover transition-all duration-300"
         >
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2">
@@ -201,8 +198,5 @@ const other = [
       ))}
     </div>
 
-    <div class="mt-10 text-center text-sm text-text-secondary">
-      Source links are private for selected projects.
-    </div>
   </div>
 </section>

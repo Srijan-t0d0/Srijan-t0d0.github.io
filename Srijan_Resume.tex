@@ -107,10 +107,11 @@
 %-----------SUMMARY-----------
 \section{Summary}
 \resumeItemListStart
-\resumeItem{Lead founding engineer at Vubo (18 months): owned all architecture, code review, and technical direction for an AI video platform integrating 45+ models (Kling, Seedance, Gemini, Flux Pro) and serving thousands of creators.}
+\resumeItem{Lead founding full-stack engineer at Vubo: owned product architecture, code review, and technical direction for an AI video platform integrating 45+ models (Kling, Seedance, Gemini, Flux Pro) and serving thousands of creators.}
+\resumeItem{Strong in DevOps and infrastructure as well: built preview deployments with Docker, Caddy, and GitHub Actions that sleep and wake on request, and wrote Terraform for on-demand staging infra that cut AWS cost by 30\%.}
 \resumeItem{Full-stack across TypeScript, Next.js, Go, Python, and SQL: from product features and API design to AWS Lambda rendering pipelines, BullMQ job queues, PostgreSQL, and Redis.}
+\resumeItem{Strong in system design and developer tooling: type-safe RouteBuilder across 70+ API routes, Turborepo monorepo migration, and a RAG-powered knowledge graph on Cloudflare's free tier.}
 \resumeItem{Shipped 3 production SaaS products end-to-end; most recent (Social Claw) includes multi-platform post scheduling, keyword-triggered DM automation, 4-tier subscription billing via Polar, and 80+ backend tests in CI.}
-\resumeItem{Strong in system design and developer tooling: type-safe RouteBuilder abstraction across 70+ API routes, Turborepo monorepo migration, RAG-powered knowledge graph running on Cloudflare's free tier.}
 \resumeItemListEnd
 
 %-----------EDUCATION-----------
@@ -118,7 +119,8 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {Indian Institute of Technology Madras}{Chennai, India}
-      {Bachelor of Science in Data Science and Applications}{Aug. 2022 -- Expected Sep. 2026}
+      {Bachelor of Science in Data Science and Applications}{Aug. 2022 -- Sep. 2026}
+    \resumeSubItem{\textbf{Online degree program for working professionals} — pursued while working full-time as founding engineer at Vubo}
     \resumeSubItem{\textbf{Certification:} CS50x, Harvard University's Introduction to Computer Science}
   \resumeSubHeadingListEnd
 
@@ -132,6 +134,8 @@
       {Vubo, AI Video Generation Platform (\href{https://vubo.ai}{\underline{vubo.ai}})}{Remote}
       \resumeItemListStart
         \resumeItem{Led 7-person engineering team building an AI video generation SaaS serving thousands of creators; owned all architecture, code review, and technical direction end-to-end}
+        \resumeItem{Built preview deployment system with Docker, Caddy, and GitHub Actions so ephemeral environments sleep and wake on request, keeping review apps available without paying for idle compute}
+        \resumeItem{Wrote Terraform for staging infrastructure that can be created or destroyed on demand, reducing AWS spend by 30\% versus keeping staging always running}
         \resumeItem{Orchestrated async AI video pipeline using fal.ai, Replicate, and Remotion on AWS Lambda; integrated 45+ models (Kling, Seedance, Gemini, Flux Pro) with prompt engineering to ensure consistent generation quality across 1,000+ processed videos}
         \resumeItem{Developed distributed background job system using Inngest and BullMQ for media processing, credit management, and workflow orchestration at scale}
         \resumeItem{Shipped backend features in TypeScript and Golang: subscription logic, atomic credit deduction, rate limiting, referral system, and internal admin tooling; backed by PostgreSQL (RDS) and Redis (ElastiCache)}
@@ -144,11 +148,11 @@
       {Full-Stack Engineer}{Oct. 2024 -- Dec. 2024}
       {MrXP, Home Services Marketplace (\href{https://mrxp.com}{\underline{mrxp.com}})}{Remote}
       \resumeItemListStart
-        \resumeItem{Converted expert profiles, search results, and dashboard from CSR to SSR, eliminating redundant re-renders and measurably improving perceived load times on high-traffic pages}
-        \resumeItem{Moved categories/services fetching from per-render API calls to build-time static generation, reducing runtime API calls by \textasciitilde{}100x}
-        \resumeItem{Implemented missing SEO fundamentals: dynamic meta tags on expert and search pages, XML sitemap, and category landing pages for organic search indexing}
-        \resumeItem{Added server-side pagination, DNS prefetching for key origins, search result caching, and optimized image/carousel loading}
-        \resumeItem{Migrated codebase to TypeScript, enforced kebab-case file naming, and restructured Navbar, search, and category components into proper Next.js patterns}
+        \resumeItem{Optimized slow PostgreSQL queries on expert search and dashboard endpoints (indexing, query rewrites, N+1 elimination), cutting P95 response times and database load on the highest-traffic paths}
+        \resumeItem{Added multi-layer caching (build-time static generation for categories/services, search result caching, server-side) that reduced runtime API calls by \textasciitilde{}100x and measurably lowered infrastructure cost}
+        \resumeItem{Converted expert profiles, search results, and dashboard from CSR to SSR, eliminating redundant re-renders and improving perceived load times on high-traffic pages}
+        \resumeItem{Shipped SEO fundamentals: dynamic meta tags on expert and search pages, XML sitemap, category landing pages for organic indexing, server-side pagination, and DNS prefetching}
+        \resumeItem{Migrated codebase to TypeScript and restructured Navbar, search, and category components into proper Next.js patterns}
       \resumeItemListEnd
 
     \resumeSubheading

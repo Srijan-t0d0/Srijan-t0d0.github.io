@@ -118,14 +118,6 @@ const other = [
       {featured.map((project, i) => (
         <article class="project-featured spotlight-card group relative p-6 sm:p-8 lg:p-10 rounded-2xl border border-border-subtle/40 bg-bg-secondary/20">
 
-          {/* Watermark index number */}
-          <span
-            class="project-index absolute top-4 right-5 sm:top-6 sm:right-8 text-[72px] sm:text-[96px] font-bold text-text-primary/[0.025] font-mono select-none pointer-events-none"
-            aria-hidden="true"
-          >
-            {String(i + 1).padStart(2, '0')}
-          </span>
-
           {/* ── Header: Logo + Title + Role + Live ── */}
           <div class="flex items-start justify-between gap-4 mb-7">
             <div class="flex items-start gap-3.5">
@@ -263,7 +255,7 @@ const other = [
                 )}
               </div>
             </div>
-            <p class="text-xs text-text-muted leading-relaxed line-clamp-2 mb-auto pb-3">
+            <p class="text-xs text-text-muted leading-relaxed line-clamp-4 mb-auto pb-3">
               {project.description}
             </p>
             <div class="pt-3 border-t border-border-subtle/15">

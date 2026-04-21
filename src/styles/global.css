@@ -15,6 +15,8 @@
   --color-accent-dark: #0ea46e;
   --color-accent-glow: rgba(22, 201, 138, 0.14);
   --color-green: #34d058;
+  --color-warm: #d4915e;
+  --color-warm-muted: rgba(212, 145, 94, 0.5);
   --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -222,18 +224,19 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  font-size: 0.75rem;
+  padding: 3px 10px;
+  font-size: 0.6875rem;
   font-family: var(--font-mono);
-  border-radius: 9999px;
-  background: var(--color-bg-card);
+  border-radius: 6px;
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-subtle);
-  color: var(--color-text-secondary);
-  transition: border-color 0.2s ease, color 0.2s ease;
+  color: var(--color-text-muted);
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
 }
 .tech-badge:hover {
   border-color: var(--color-accent);
   color: var(--color-accent-light);
+  background: rgba(22, 201, 138, 0.06);
 }
 .tech-badge-icon {
   width: 14px;
@@ -244,6 +247,104 @@ body {
 }
 .tech-badge:hover .tech-badge-icon {
   opacity: 1;
+}
+
+/* ─── Featured project card ─────────────────────────────────────────── */
+.project-featured {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Accent left bar — gradient green line */
+.project-featured::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-light) 0%,
+    var(--color-accent) 45%,
+    transparent 100%
+  );
+  z-index: 2;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+.project-featured:hover::after {
+  opacity: 1;
+}
+
+.project-featured:hover {
+  border-color: var(--color-border-accent);
+  box-shadow:
+    0 8px 80px -20px var(--color-accent-glow),
+    0 2px 20px -8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background-color: rgba(19, 19, 22, 0.55);
+}
+
+/* Metrics panel */
+.project-metric {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-subtle);
+  border-top-color: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.project-featured:hover .project-metric {
+  border-color: var(--color-border-accent);
+  box-shadow: 0 0 24px -8px rgba(22, 201, 138, 0.05);
+}
+
+/* Gradient divider */
+.project-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--color-border-subtle) 0%,
+    var(--color-border-subtle) 40%,
+    transparent 100%
+  );
+}
+
+/* Narrative section — left border pulse on hover */
+.narrative-section {
+  transition: border-color 0.3s ease;
+}
+.project-featured:hover .narrative-challenge {
+  border-color: var(--color-warm);
+}
+.project-featured:hover .narrative-build {
+  border-color: var(--color-text-muted);
+}
+.project-featured:hover .narrative-impact {
+  border-color: var(--color-accent);
+}
+
+/* Project index watermark */
+.project-index {
+  font-variant-numeric: tabular-nums;
+  line-height: 0.85;
+}
+
+/* Stagger entrance for metrics and narrative */
+@keyframes metric-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-metric-in {
+  animation: metric-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Section label */

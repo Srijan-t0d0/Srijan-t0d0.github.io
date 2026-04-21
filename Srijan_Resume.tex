@@ -107,11 +107,11 @@
 %-----------SUMMARY-----------
 \section{Summary}
 \resumeItemListStart
-\resumeItem{Lead founding full-stack engineer at Vubo: owned product architecture, code review, and technical direction for an AI video platform integrating 45+ models (Kling, Seedance, Gemini, Flux Pro) and serving thousands of creators.}
+\resumeItem{First engineer at Vubo, wrote the first commit; promoted to lead after 4 months. Now own product architecture, code review, and technical direction for an AI video platform integrating 45+ models (Kling, Seedance, Gemini, Flux Pro) and serving thousands of creators.}
 \resumeItem{Strong in DevOps and infrastructure as well: built preview deployments with Docker, Caddy, and GitHub Actions that sleep and wake on request, and wrote Terraform for on-demand staging infra that cut AWS cost by 30\%.}
-\resumeItem{Full-stack across TypeScript, Next.js, Go, Python, and SQL: from product features and API design to AWS Lambda rendering pipelines, BullMQ job queues, PostgreSQL, and Redis.}
+\resumeItem{Full-stack across TypeScript, Next.js, Python, and SQL: from product features and API design to AWS Lambda rendering pipelines, BullMQ job queues, PostgreSQL, and Redis.}
 \resumeItem{Strong in system design and developer tooling: type-safe RouteBuilder across 70+ API routes, Turborepo monorepo migration, and a RAG-powered knowledge graph on Cloudflare's free tier.}
-\resumeItem{Shipped 3 production SaaS products end-to-end; most recent (Social Claw) includes multi-platform post scheduling, keyword-triggered DM automation, 4-tier subscription billing via Polar, and 80+ backend tests in CI.}
+\resumeItem{Shipped 8 production SaaS products end-to-end; most recent (Social Claw) includes multi-platform post scheduling, keyword-triggered DM automation, 4-tier subscription billing via Polar, and 80+ backend tests in CI.}
 \resumeItemListEnd
 
 %-----------EDUCATION-----------
@@ -130,15 +130,15 @@
   \resumeSubHeadingListStart
 
     \resumeSubheading
-      {Lead Founding Engineer}{Oct. 2024 -- Present}
+      {Founding Engineer $\rightarrow$ Lead Founding Engineer}{Oct. 2024 -- Present}
       {Vubo, AI Video Generation Platform (\href{https://vubo.ai}{\underline{vubo.ai}})}{Remote}
       \resumeItemListStart
-        \resumeItem{Led 7-person engineering team building an AI video generation SaaS serving thousands of creators; owned all architecture, code review, and technical direction end-to-end}
+        \resumeItem{Joined as the first engineer and wrote the first commit; promoted to lead after 4 months, now owning architecture, code review, and technical direction for a 7-person engineering team serving thousands of creators}
         \resumeItem{Built preview deployment system with Docker, Caddy, and GitHub Actions so ephemeral environments sleep and wake on request, keeping review apps available without paying for idle compute}
         \resumeItem{Wrote Terraform for staging infrastructure that can be created or destroyed on demand, reducing AWS spend by 30\% versus keeping staging always running}
         \resumeItem{Orchestrated async AI video pipeline using fal.ai, Replicate, and Remotion on AWS Lambda; integrated 45+ models (Kling, Seedance, Gemini, Flux Pro) with prompt engineering to ensure consistent generation quality across 1,000+ processed videos}
         \resumeItem{Developed distributed background job system using Inngest and BullMQ for media processing, credit management, and workflow orchestration at scale}
-        \resumeItem{Shipped backend features in TypeScript and Golang: subscription logic, atomic credit deduction, rate limiting, referral system, and internal admin tooling; backed by PostgreSQL (RDS) and Redis (ElastiCache)}
+        \resumeItem{Shipped backend features in TypeScript: subscription logic, atomic credit deduction, rate limiting, referral system, and internal admin tooling; backed by PostgreSQL (RDS) and Redis (ElastiCache)}
         \resumeItem{Built social scheduling with OAuth across 4 platforms (Meta, TikTok, YouTube), enabling creators to publish directly from the app and eliminating dependency on external scheduling tools}
         \resumeItem{Engineered a type-safe RouteBuilder abstraction reused across 70+ API routes, centralising auth, workspace scoping, rate limiting, and tracing while eliminating per-route boilerplate across the entire API surface}
         \resumeItem{Integrated OpenTelemetry tracing and PostHog analytics; optimized CI/CD with GitHub Actions caching and automated CloudFront invalidations; migrated to Turborepo monorepo with React 19 + Partial Pre-Rendering}
@@ -177,10 +177,23 @@
             \resumeItem{Integrated 4-tier subscription billing via Polar; shipped with 80+ backend tests (Vitest) and a full CI/CD pipeline for production-grade quality from day one}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\textbf{Internet Mindmap} $|$ \emph{Next.js 15, Cloudflare Workers/D1/Vectorize, Drizzle, AI SDK} $|$ \href{https://internet-mindmap.vercel.app}{\underline{Live}}}{2025}
+          {\textbf{Internet Mindmap} $|$ \emph{Next.js, Hono, Neon Postgres, pgvector, Workers AI, Vercel AI SDK, WXT} $|$ \href{https://internet-mindmap.vercel.app}{\underline{Live}}}{2025}
           \resumeItemListStart
-            \resumeItem{Chrome extension that saves any page, extracts content, generates embeddings, and connects everything into a searchable mind map. Runs on Cloudflare free tier (\$0/month)}
-            \resumeItem{Cloudflare Workflows pipeline handles extraction, vectorization, and AI tagging. Includes RAG chat with source citations and a force-directed graph view}
+            \resumeItem{Built a full RAG pipeline: Chrome extension captures pages, a Cloudflare Workflow extracts content, generates 768-dim embeddings via EmbeddingGemma-300M, chunks long articles (6k chars / 500 overlap), and stores vectors in Neon Postgres with HNSW indexing for cosine similarity search}
+            \resumeItem{Implemented HyDE (Hypothetical Document Embeddings) for chat queries, CRAG retry with query rewriting when relevance drops below threshold, and tag-graph hops to surface related items — all streamed via Vercel AI SDK with bracket-reference source citations}
+            \resumeItem{Designed a migration-proof embedding registry with active/shadow provider pattern: new models embed in parallel without downtime, then a config flip switches query-time provider — zero code change, zero user-visible downtime}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Reddit MCP Server} $|$ \emph{TypeScript, MCP SDK, Hono, Cloudflare Workers, Zod, Bun} $|$ \href{https://reddit-mcp.chaturchacharost.workers.dev/}{\underline{Live}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Built a Model Context Protocol server exposing Reddit data through 7 tools (search, posts, subreddits, users, multi-feed aggregation) with Zod-validated schemas across 4 deployment targets: stdio, Streamable HTTP, REST API, and Apify Actor}
+            \resumeItem{Engineered stale-while-revalidate caching with in-flight request deduplication and metrics tracking; deployed to Cloudflare Workers edge with cross-runtime support (Bun, Node.js, CF Workers)}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Visual App Builder} $|$ \emph{React, React Flow, Hono, Mastra, OpenRouter, Zustand, Drizzle, SQLite}}{2025}
+          \resumeItemListStart
+            \resumeItem{Visual workflow builder that converts drag-and-drop canvases into production Next.js 16 projects via a 6-agent code generation pipeline with fan-out parallelization (concurrency 4) and rule-based skill dispatch — runs on free-tier LLMs (\$0 cost)}
+            \resumeItem{Two-pass validation (static import/dep checker + in-memory bash-tool sandbox) with SSE progress streaming and per-agent SQLite telemetry tracking model, tokens, latency, and finish reason}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Emotion Classifier} $|$ \emph{PyTorch, Transformers, BERT, DeBERTa, BiLSTM, Gradio} $|$ \href{https://huggingface.co/spaces/Srijant0d0/emotion-classifier}{\underline{Live}} $|$ \href{https://github.com/Srijan-t0d0/deep-learning-project}{\underline{GitHub}}}{2025}
@@ -203,7 +216,7 @@
      \textbf{Languages}{: TypeScript, JavaScript, Python, Go, SQL, HTML/CSS, Bash, C} \\
      \textbf{Frameworks}{: Next.js 16, React 19, Astro, Hono, Express.js, Flask, Tailwind CSS v4, tRPC, GraphQL, Remotion} \\
      \textbf{Backend \& Data}{: PostgreSQL, Drizzle ORM, Prisma, Convex, Redis, BullMQ, Inngest, MongoDB, Socket.IO, Cloudflare D1, KV Storage} \\
-     \textbf{AI/ML}{: PyTorch, Vercel AI SDK, LangChain, Cloudflare Workers AI, RAG, Embeddings, scikit-learn, OpenAI, Gemini, Mistral, OpenRouter, fal.ai, Replicate, Prompt Engineering, Browser Extension APIs} \\
+     \textbf{AI/ML}{: PyTorch, Vercel AI SDK, LangChain, MCP SDK, Mastra, Cloudflare Workers AI, RAG, HyDE, pgvector, Embeddings, scikit-learn, OpenAI, Gemini, Mistral, OpenRouter, fal.ai, Replicate, Prompt Engineering, Browser Extension APIs} \\
      \textbf{Infrastructure}{: AWS (EC2, ECS, EKS, Lambda, S3, ECR, RDS, CloudFront, IAM, VPC, ElastiCache, ALB, WAF, CloudWatch), Cloudflare Workers, Terraform, Docker, Kubernetes, Nginx, Caddy, Turborepo, GitHub Actions, Linux} \\
      \textbf{Observability \& Auth}{: OpenTelemetry, Prometheus, Grafana, CloudWatch, PostHog, Weights \& Biases, Better Auth, Auth.js, OAuth}
     }}

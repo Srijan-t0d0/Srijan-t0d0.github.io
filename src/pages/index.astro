@@ -67,16 +67,18 @@ import Footer from '../components/Footer.astro';
       });
     });
 
-    // ─── Tilt on featured project cards ────────────────────────────────────
-    document.querySelectorAll<HTMLElement>('article.card-glow').forEach((card) => {
+    // ─── Subtle tilt on featured project cards ──────────────────────────────
+    document.querySelectorAll<HTMLElement>('article.project-featured').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width  - 0.5;
         const y = (e.clientY - rect.top)  / rect.height - 0.5;
-        card.style.transform = `perspective(900px) rotateX(${-y * 2.5}deg) rotateY(${x * 2.5}deg)`;
+        card.style.transform = `perspective(1200px) rotateX(${-y * 1.5}deg) rotateY(${x * 1.5}deg)`;
       }, { passive: true });
       card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
         card.style.transform = '';
+        setTimeout(() => { card.style.transition = ''; }, 400);
       });
     });
   </script>

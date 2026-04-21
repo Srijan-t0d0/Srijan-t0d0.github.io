@@ -20,27 +20,31 @@ const emailHref = "mailto:srijandev01@gmail.com?subject=Hello%20Srijan";
 
     <!-- One-liner intro — punchy, quick to scan -->
     <p class="animate-fade-up delay-200 text-lg sm:text-xl md:text-2xl text-text-secondary font-light max-w-2xl mb-5 leading-snug">
-      Lead engineer at Vubo. I learn fast, ship faster, and catch problems before they catch us.
+      First engineer → Lead at Vubo. I learn fast, ship faster, and catch problems before they catch us.
     </p>
 
     <!-- Credential + availability -->
     <p class="animate-fade-up delay-400 text-sm sm:text-base text-text-muted max-w-2xl mb-8 leading-relaxed">
-      3 SaaS products shipped end to end. Open to remote founding engineer roles. Full-time, available now.
+      8 SaaS products shipped end to end. Open to remote founding engineer roles. Full-time, available now.
     </p>
 
     <!-- Stat badges -->
     <div class="animate-fade-up delay-500 flex flex-wrap gap-3 mb-10">
       <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
-        <span class="text-lg font-bold font-mono text-text-primary leading-none">15+</span>
-        <span class="text-xs text-text-muted">Happy clients</span>
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">8</span>
+        <span class="text-xs text-text-muted">SaaS shipped</span>
+      </div>
+      <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">7</span>
+        <span class="text-xs text-text-muted">Engineers led</span>
       </div>
       <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
         <span class="text-lg font-bold font-mono text-text-primary leading-none">3000+</span>
-        <span class="text-xs text-text-muted">Users served</span>
+        <span class="text-xs text-text-muted">Users on platform</span>
       </div>
       <div class="px-4 py-2.5 rounded-xl border border-border-subtle bg-bg-secondary/40 flex flex-col gap-0.5">
-        <span class="text-lg font-bold font-mono text-text-primary leading-none">30%</span>
-        <span class="text-xs text-text-muted">AWS cost cut</span>
+        <span class="text-lg font-bold font-mono text-text-primary leading-none">2.5+</span>
+        <span class="text-xs text-text-muted">Years experience</span>
       </div>
     </div>
 
@@ -121,22 +125,28 @@ const FS = `
     float aspect = u_res.x / u_res.y;
     vec2 uvA = vec2(uv.x * aspect, uv.y);
 
+    // Aspect-correct noise UV — prevents squished pattern on portrait (mobile)
+    // On landscape (aspect >= 1): yScale = 1.0, no change
+    // On portrait  (aspect <  1): yScale > 1.0, stretches Y noise range
+    float yScale = max(1.0, 1.0 / aspect);
+    vec2 nuv = vec2(uv.x, uv.y * yScale);
+
     // Mouse nudges the second warp layer — stronger pull
     vec2 moff = (u_mouse - uv) * 0.13;
 
     // Layer 1 warp
     vec2 q = vec2(
-      fbm(uv * 2.0 + vec2(0.0,  t)),
-      fbm(uv * 2.0 + vec2(5.2,  t * 0.78))
+      fbm(nuv * 2.0 + vec2(0.0,  t)),
+      fbm(nuv * 2.0 + vec2(5.2,  t * 0.78))
     );
 
     // Layer 2 warp + mouse influence
     vec2 r = vec2(
-      fbm(uv * 2.0 + 3.5 * q + vec2(1.7, 9.2) + 0.10 * t + moff),
-      fbm(uv * 2.0 + 3.5 * q + vec2(8.3, 2.8) + 0.075 * t + moff)
+      fbm(nuv * 2.0 + 3.5 * q + vec2(1.7, 9.2) + 0.10 * t + moff),
+      fbm(nuv * 2.0 + 3.5 * q + vec2(8.3, 2.8) + 0.075 * t + moff)
     );
 
-    float f = fbm(uv * 1.5 + r) * 0.5 + 0.5; // remap to [0,1]
+    float f = fbm(nuv * 1.5 + r) * 0.5 + 0.5; // remap to [0,1]
 
     // Colour palette
     vec3 base   = vec3(0.0353, 0.0353, 0.0431); // #09090b — dark zinc
@@ -261,7 +271,12 @@ if (isMobile || wantsLess) {
         ty = (e.clientY - rect.top)   / rect.height;
       }, { passive: true });
 
-      canvas.addEventListener('click', (e) => {
+      // Listen on the section, not the canvas — the content div (z-index:10)
+      // sits above the canvas and swallows clicks that never reach it.
+      const heroSection = canvas.closest('section')!;
+      heroSection.addEventListener('click', (e) => {
+        // Don't trigger ripple when clicking interactive elements
+        if ((e.target as HTMLElement).closest('a, button')) return;
         const rect = canvas.getBoundingClientRect();
         clickX = (e.clientX - rect.left) / rect.width;
         clickY = (e.clientY - rect.top)  / rect.height;

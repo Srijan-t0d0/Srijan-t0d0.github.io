@@ -1,0 +1,128 @@
+---
+const stats = [
+  { value: "2+", label: "Years Shipping Production Code" },
+  { value: "8", label: "SaaS Products Shipped" },
+  { value: "7", label: "Engineers Led at Vubo" },
+  { value: "45+", label: "AI Models Integrated" },
+];
+---
+
+<section id="about" class="relative py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <!-- Left column -->
+      <div>
+        <span class="section-label">About</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
+          I solve problems with software,<br/>
+          <span class="text-text-secondary">then ship it to real users</span>
+        </h2>
+        <div class="space-y-4 text-text-secondary leading-relaxed">
+          <p>
+            I have this habit where I learn a tool on Monday and ship something with it by Friday.
+            Picked up Terraform, built destroyable staging for Vubo, cut the AWS bill 30%. Found
+            Cloudflare Workers, built a RAG knowledge graph that runs for $0 a month. I can't really
+            sit on new tech.
+          </p>
+          <p>
+            The other thing I do is catch problems before they catch us. Added observability my team
+            said we didn't need, then used it to debug a prod incident three weeks later. Shipped a
+            RouteBuilder before 70 API routes became a pile. Caching before the database started
+            filing complaints. When prod does break, I'm usually the one pulling up the dashboard I
+            built <span class="italic">"for no reason"</span> last month and finding the fix in five minutes.
+          </p>
+          <p>
+            That's how I've built at <a href="https://vubo.ai" target="_blank" rel="noopener" class="text-accent-light hover:underline">Vubo</a> —
+            wrote the first commit and built the codebase from scratch. 45+ AI model integrations, server-side rendering on AWS Lambda,
+            async job queues handling thousands of renders. Promoted to lead after 4 months, now running a 7-person engineering team.
+          </p>
+          <p>
+            I pick the architecture, set up CI/CD, write tests, handle infra, and push to prod.
+            <strong class="text-text-primary">Social Claw</strong> went from nothing to a full SaaS
+            (billing, DM automation, multi-platform scheduling, 80+ backend tests).
+            <strong class="text-text-primary">Internet Mindmap</strong> runs a RAG-powered knowledge graph
+            with Chrome extension on Cloudflare's free tier. Recently migrated Vubo to Next.js 16 with
+            Partial Pre-Rendering on a Turborepo monorepo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="space-y-8">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-4">
+          {stats.map(stat => (
+            <div class="p-4 rounded-xl border border-border-subtle bg-bg-secondary/30 hover:border-accent/30 transition-colors duration-300">
+              <div class="text-2xl font-bold text-text-primary font-mono mb-1 stat-value" data-target={stat.value}>{stat.value}</div>
+              <div class="text-xs text-text-muted">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- What I bring card -->
+        <div class="p-6 rounded-xl border border-border-subtle bg-bg-secondary/30">
+          <h3 class="text-sm font-mono text-text-muted mb-4 uppercase tracking-wider">What I Bring</h3>
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3 text-sm border-b border-border-subtle/40 pb-3">
+              <span class="text-text-muted shrink-0">Core Stack</span>
+              <span class="text-text-secondary text-right">TypeScript, React, Next.js</span>
+            </div>
+            <div class="flex items-start justify-between gap-3 text-sm border-b border-border-subtle/40 pb-3">
+              <span class="text-text-muted shrink-0">Backend</span>
+              <span class="text-text-secondary text-right">Node.js, Hono, Convex, Python</span>
+            </div>
+            <div class="flex items-start justify-between gap-3 text-sm border-b border-border-subtle/40 pb-3">
+              <span class="text-text-muted shrink-0">Infra & DevOps</span>
+              <span class="text-text-secondary text-right">AWS, Cloudflare, Vercel, Docker</span>
+            </div>
+            <div class="flex items-start justify-between gap-3 text-sm border-b border-border-subtle/40 pb-3">
+              <span class="text-text-muted shrink-0">Superpower</span>
+              <span class="text-text-secondary text-right">Prod-quality systems, shipped fast</span>
+            </div>
+            <div class="flex items-start justify-between gap-3 text-sm">
+              <span class="text-text-muted shrink-0">GitHub</span>
+              <a href="https://github.com/Srijan-t0d0" target="_blank" rel="noopener" class="text-accent-light hover:underline text-right">@Srijan-t0d0</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Count-up animation for stat numbers
+  function animateCount(el: HTMLElement) {
+    const raw = el.dataset.target ?? '';
+    const suffix = raw.replace(/[\d.]/g, '');        // e.g. " mo", "+", ""
+    const num = parseFloat(raw.replace(/[^\d.]/g, ''));
+    if (isNaN(num)) return;
+
+    const isDecimal = raw.includes('.');
+    const duration = 900;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);          // cubic ease-out
+      const current = eased * num;
+      el.textContent = (isDecimal ? current.toFixed(1) : Math.round(current).toString()) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const statEls = document.querySelectorAll<HTMLElement>('.stat-value');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          animateCount(e.target as HTMLElement);
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+  statEls.forEach((el) => observer.observe(el));
+</script>

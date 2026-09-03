@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <Hero />
+    <Experience />
+    <Projects />
+    <Skills />
+    <Contact />
+  </main>
+  <Footer />
+
+  <!-- Global micro-interactions -->
+  <script>
+    // ─── Scroll-triggered fade-in ───────────────────────────────────────────
+    const fadeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add('animate-fade-up');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll<HTMLElement>('section > div').forEach((el) => {
+      el.style.opacity = '0';
+      fadeObserver.observe(el);
+    });
+
+    // Don't hide hero content
+    const heroDiv = document.querySelector<HTMLElement>('section:first-of-type > div');
+    if (heroDiv) heroDiv.style.opacity = '1';
+
+    // ─── Spotlight cards — cursor-tracked radial glow ───────────────────────
+    document.querySelectorAll<HTMLElement>('.spotlight-card').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width)  * 100;
+        const y = ((e.clientY - rect.top)  / rect.height) * 100;
+        card.style.setProperty('--mx', `${x}%`);
+        card.style.setProperty('--my', `${y}%`);
+      }, { passive: true });
+    });
+
+    // ─── Ripple click effect on all .btn-press elements ─────────────────────
+    document.querySelectorAll<HTMLElement>('.btn-press').forEach((btn) => {
+      btn.classList.add('ripple-origin');
+      btn.addEventListener('click', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const ring = document.createElement('span');
+        ring.className = 'ripple-ring';
+        ring.style.top  = `${e.clientY - rect.top}px`;
+        ring.style.left = `${e.clientX - rect.left}px`;
+        btn.appendChild(ring);
+        ring.addEventListener('animationend', () => ring.remove());
+      });
+    });
+
+    // ─── Subtle tilt on featured project cards ──────────────────────────────
+    document.querySelectorAll<HTMLElement>('article.project-featured').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        card.style.transform = `perspective(1200px) rotateX(${-y * 1.5}deg) rotateY(${x * 1.5}deg)`;
+      }, { passive: true });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        card.style.transform = '';
+        setTimeout(() => { card.style.transition = ''; }, 400);
+      });
+    });
+  </script>
+</Layout>
